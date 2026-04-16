@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --ember: #E5A24A;
+  --ember-soft: #F4C478;
+  --bone: #F6F1E4;
+  --obsidian: #07080B;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  background: var(--obsidian);
+  color: var(--bone);
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+::selection {
+  background: var(--ember);
+  color: var(--obsidian);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar        { width: 10px; height: 10px; }
+::-webkit-scrollbar-track  { background: #0B0D12; }
+::-webkit-scrollbar-thumb  { background: #252934; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3E4A; }
+
+/* Grain overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* Fine grid pattern for hero */
+.dotgrid {
+  background-image: radial-gradient(rgba(246, 241, 228, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.linegrid {
+  background-image:
+    linear-gradient(to right, rgba(246, 241, 228, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(246, 241, 228, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Ember radial glow */
+.ember-glow {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(229, 162, 74, 0.18) 0%, rgba(229, 162, 74, 0.05) 40%, transparent 75%);
+  filter: blur(14px);
+}
+
+/* Display kerning */
+.display {
+  font-family: 'Fraunces', ui-serif, Georgia, serif;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+}
+
+.display-italic {
+  font-family: 'Fraunces', ui-serif, Georgia, serif;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+/* Hairline borders */
+.hair-t { border-top: 1px solid rgba(246, 241, 228, 0.12); }
+.hair-b { border-bottom: 1px solid rgba(246, 241, 228, 0.12); }
+.hair-l { border-left: 1px solid rgba(246, 241, 228, 0.12); }
+.hair-r { border-right: 1px solid rgba(246, 241, 228, 0.12); }
+.hair   { border: 1px solid rgba(246, 241, 228, 0.12); }
+
+/* Buttons */
+.btn-ember {
+  background: var(--ember);
+  color: var(--obsidian);
+  transition: all 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-ember:hover {
+  background: var(--ember-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(229, 162, 74, 0.5);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(246, 241, 228, 0.22);
+  color: var(--bone);
+  transition: all 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-ghost:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+/* Mermaid dark override */
+.mermaid-wrap {
+  background: linear-gradient(180deg, rgba(18, 20, 27, 0.75), rgba(11, 13, 18, 0.9));
+  border: 1px solid rgba(246, 241, 228, 0.08);
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  overflow-x: auto;
+}
+.mermaid-wrap svg { margin: 0 auto; display: block; max-width: 100%; height: auto; }
+
+/* Decorative corner markers */
+.corner-mark::before,
+.corner-mark::after,
+.corner-mark > span::before,
+.corner-mark > span::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(229, 162, 74, 0.5);
+}
+.corner-mark::before      { top: -1px;    left: -1px;    border-right: 0; border-bottom: 0; }
+.corner-mark::after       { top: -1px;    right: -1px;   border-left: 0;  border-bottom: 0; }
+.corner-mark > span::before { bottom: -1px; left: -1px;  border-right: 0; border-top: 0; }
+.corner-mark > span::after  { bottom: -1px; right: -1px; border-left: 0;  border-top: 0; }
+
+/* Tiny numeric eyebrow */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 228, 0.55);
+}
+
+/* Link underline */
+.under-ember {
+  background-image: linear-gradient(var(--ember), var(--ember));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 300ms ease;
+}
+.under-ember:hover { background-size: 100% 2px; }
