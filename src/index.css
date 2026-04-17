@@ -22,6 +22,28 @@ html, body {
   font-feature-settings: "ss01", "ss02", "cv11";
 }
 
+/* PDF / print rendering: keep the dark theme, avoid awkward breaks */
+@media print {
+  html, body {
+    background: var(--obsidian) !important;
+    color: var(--bone) !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .grain::before { display: none; }
+  .mermaid-wrap, .corner-mark, section, article, table {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  h1, h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .animate-marquee { animation: none !important; }
+}
+
 ::selection {
   background: var(--ember);
   color: var(--obsidian);
